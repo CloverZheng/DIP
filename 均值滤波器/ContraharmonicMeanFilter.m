@@ -1,11 +1,11 @@
-f = imread('ԭͼ.jpg');
+f = imread('原图.jpg');
 f = mat2gray(f);
 [M,N] = size(f);
 
-length=3;%��ͬ�˲�����Сֻ���޸������������
+length=3;%不同滤波器大小只需修改这个参数即可
 half_length=(length-1)/2;
 
-%��ԭͼ�ӿ򣬱߿����Ϊ���˲�����С-1��/2���߿�ֵ����ͼƬ��Եֵ
+%把原图加框，边框宽度为（滤波器大小-1）/2，边框值复制图片边缘值
 g_Ex = zeros(M+length-1,N+length-1);
 if(length==3)
     for x = 1:M
@@ -28,7 +28,7 @@ for i=half_length+1:length-1
     g_Ex(M+i,:)=g_Ex(M+i-1,:);
 end
 
-% ��г���˲���
+% 逆谐波滤波器
 Q = -1.5;
 g_cmf = zeros(M,N);
 g_cmf_M=zeros(M,N);
